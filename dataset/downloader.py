@@ -1,6 +1,6 @@
 import requests
 from helpers.dataset_urls import *
-from .csv_parser import parse_csv
+from .csv_parser import *
 
 def download_all():
     """
@@ -8,12 +8,19 @@ def download_all():
     """
     for key, value in dataset_driver_age.items():
         download_dataset(value[0], value[1], key)
-
-def download_dataset(dataset_url: str, offset: int, dataset_year: int):
-    """
-
-    """
     
+    print("===================================")
+
+    for key, value in dataset_week_day.items():
+        download_dataset(value[0], value[1], key)
+
+def download_dataset(dataset_url: str, offset: int, dataset_year: str):
+    """
+
+    """
+    driver_age_keywords = ['wiek kierującego', 'Wiek sprawcy kierującego', 'wiek sprawcy kierującego']
+    week_day_keywords = ['podział na dni','dni tygodnia','']
+
     response = requests.get(dataset_url)
 
     if response.status_code == 200:
@@ -27,7 +34,12 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: int):
         open('./dataset/tmp.csv','wb').write(file.content)
 
         if format == 'csv':
-            parsed_csv = parse_csv('./dataset/tmp.csv', offset, dataset_year)
+            if [el for el in driver_age_keywords if(el in title)]:
+                parsed_csv = parse_csv_driver_age('./dataset/tmp.csv', offset, dataset_year)
+            elif [el for el in week_day_keywords if(el in title)]:
+                parsed_csv = parse_csv_week_day('./dataset/tmp.csv', offset, dataset_year)
+            else:
+                print('Nieobslugiwany tytul danych')
         else:
             print('Unsupported file format:', format)
 
