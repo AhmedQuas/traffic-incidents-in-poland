@@ -1,3 +1,4 @@
 env/*
 helpers/__pycache__/*
 dataset/__pycache__/*
+dataset/tmp.csv

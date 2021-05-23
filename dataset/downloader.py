@@ -1,5 +1,4 @@
 import requests
-import csv
 from helpers.dataset_urls import *
 from .csv_parser import parse_csv
 
@@ -7,10 +6,10 @@ def download_all():
     """
 
     """
+    for key, value in dataset_driver_age.items():
+        download_dataset(value[0], value[1], key)
 
-    download_dataset(dataset_2020_urls['driver_age'])
-
-def download_dataset(dataset_url: str):
+def download_dataset(dataset_url: str, offset: int, dataset_year: int):
     """
 
     """
@@ -28,10 +27,11 @@ def download_dataset(dataset_url: str):
         open('./dataset/tmp.csv','wb').write(file.content)
 
         if format == 'csv':
-            parse_csv()
+            parsed_csv = parse_csv('./dataset/tmp.csv', offset, dataset_year)
         else:
             print('Unsupported file format:', format)
 
     else:
         print('URL not found')
-
+    
+    print(parsed_csv)
