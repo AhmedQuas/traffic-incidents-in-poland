@@ -9,14 +9,19 @@ def download_all():
     #for key, value in dataset_driver_age.items():
     #    download_dataset(value[0], value[1], key)
     
-    print("===================================")
+    #print("========Driver age end=============")
 
     #for key, value in dataset_week_day.items():
     #    download_dataset(value[0], value[1], key)
 
-    print("===================================")
+    #print("========Days of weeek end==========")
 
-    for key, value in dataset_months.items():
+    #for key, value in dataset_months.items():
+    #    download_dataset(value[0], value[1], key)
+
+    print("============Months end=============")
+
+    for key, value in dataset_hours.items():
         download_dataset(value[0], value[1], key)
 
 def download_dataset(dataset_url: str, offset: int, dataset_year: str):
@@ -24,8 +29,9 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
 
     """
     driver_age_keywords = ['wiek kierującego', 'Wiek sprawcy kierującego', 'wiek sprawcy kierującego']
-    week_day_keywords = ['podział na dni','dni tygodnia']
-    months_keywords = ['podział na miesiące','podziale na miesiące','- miesiące']
+    week_day_keywords = ['podział na dni', 'dni tygodnia']
+    months_keywords = ['podział na miesiące', 'podziale na miesiące', '- miesiące']
+    hours_keywords = ['podział na godziny', 'podziale na godziny', '- godziny']
 
     response = requests.get(dataset_url)
 
@@ -44,11 +50,16 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
         if format == 'csv':
             if [el for el in driver_age_keywords if(el in title)]:
                 parsed_csv = parse_csv_driver_age(tmp_filename, offset, dataset_year)
+
             elif [el for el in week_day_keywords if(el in title)]:
                 parsed_csv = parse_csv_week_day(tmp_filename, offset, dataset_year)
+
             elif [el for el in months_keywords if(el in title)]:
                 parsed_csv = parse_csv_month(tmp_filename, offset, dataset_year)
-                
+
+            elif [el for el in hours_keywords if(el in title)]:
+                parsed_csv = parse_csv_hours(tmp_filename, offset, dataset_year)
+
             else:
                 print('Unsupported dataset title:', title)
         else:

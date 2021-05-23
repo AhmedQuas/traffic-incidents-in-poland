@@ -24,3 +24,11 @@ dataset_months = {
     '2017': ['https://api.dane.gov.pl/1.4/resources/5965,statystyka-ogolna-w-podziale-na-miesiace-w-2017-r?lang=pl', 4],
     '2016': ['https://api.dane.gov.pl/1.4/resources/5943,zdarzenia-w-ruchu-drogowym-w-2016-r-miesiace?lang=pl', 0]
 }
+
+dataset_hours = {
+    '2020': ['https://api.dane.gov.pl/1.4/resources/29550,zdarzenia-w-ruchu-drogowych-w-2020-r-statystyka-ogolna-podzia-na-godziny?lang=pl', 3],
+    '2019': ['https://api.dane.gov.pl/1.4/resources/24621,zdarzenia-w-ruchu-drogowych-w-2019-r-statystyka-ogolna-podzia-na-godziny?lang=pl', 3],
+    '2018': ['https://api.dane.gov.pl/1.4/resources/16312,zdarzenia-w-ruchu-drogowym-w-2018-r-statystyka-ogolna-podzial-na-godziny?lang=pl', 4],
+    '2017': ['https://api.dane.gov.pl/1.4/resources/5940,statystyka-ogolna-w-podziale-na-godziny-w-2017-r?lang=pl', 4],
+    '2016': ['https://api.dane.gov.pl/1.4/resources/5949,zdarzenia-w-ruchu-drogowym-w-2016-r-godziny?lang=pl', 0]
+}
