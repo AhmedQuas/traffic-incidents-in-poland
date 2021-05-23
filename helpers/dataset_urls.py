@@ -16,3 +16,11 @@ dataset_week_day = {
     '2017': ['https://api.dane.gov.pl/1.4/resources/5964,statystyka-ogolna-w-podziale-na-dni-tygodnia-w-2017-r?lang=pl', 4],
     '2016': ['https://api.dane.gov.pl/1.4/resources/5947,zdarzenia-w-ruchu-drogowym-w-2016-r-dni-tygodnia?lang=pl', 0]
 }
+
+dataset_months = {
+    '2020': ['https://api.dane.gov.pl/1.4/resources/29548,zdarzenia-w-ruchu-drogowych-w-2020-r-statystyka-ogolna-podzia-na-miesiace?lang=pl', 3],
+    '2019': ['https://api.dane.gov.pl/1.4/resources/24622,zdarzenia-w-ruchu-drogowych-w-2019-r-statystyka-ogolna-podzia-na-miesiace?lang=pl', 3],
+    '2018': ['https://api.dane.gov.pl/1.4/resources/16311,zdarzenia-w-ruchu-drogowym-w-2018-r-statystyka-ogolna-podzial-na-miesiace?lang=pl', 4],
+    '2017': ['https://api.dane.gov.pl/1.4/resources/5965,statystyka-ogolna-w-podziale-na-miesiace-w-2017-r?lang=pl', 4],
+    '2016': ['https://api.dane.gov.pl/1.4/resources/5943,zdarzenia-w-ruchu-drogowym-w-2016-r-miesiace?lang=pl', 0]
+}
