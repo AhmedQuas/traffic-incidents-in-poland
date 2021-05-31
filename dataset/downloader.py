@@ -19,9 +19,14 @@ def download_all():
     #for key, value in dataset_months.items():
     #    download_dataset(value[0], value[1], key)
 
-    print("============Months end=============")
+    #print("============Months end=============")
 
-    for key, value in dataset_hours.items():
+    #for key, value in dataset_hours.items():
+    #    download_dataset(value[0], value[1], key)
+
+    print("============Hours end=============")
+
+    for key, value in dataset_place_characteristics.items():
         download_dataset(value[0], value[1], key)
 
 def download_dataset(dataset_url: str, offset: int, dataset_year: str):
@@ -32,6 +37,7 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     week_day_keywords = ['podział na dni', 'dni tygodnia']
     months_keywords = ['podział na miesiące', 'podziale na miesiące', '- miesiące']
     hours_keywords = ['podział na godziny', 'podziale na godziny', '- godziny']
+    place_characteristics_keywords = ['charakterystyka miejsca', 'Charakterystyka miejsca']
 
     response = requests.get(dataset_url)
 
@@ -60,6 +66,9 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
             elif [el for el in hours_keywords if(el in title)]:
                 parsed_csv = parse_csv_hours(tmp_filename, offset, dataset_year)
 
+            elif [el for el in place_characteristics_keywords if(el in title)]:
+                parsed_csv = parse_csv_place_characteristics(tmp_filename, offset, dataset_year)
+
             else:
                 print('Unsupported dataset title:', title)
         else:
@@ -68,4 +77,4 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     else:
         print('URL not found')
     
-    #print(parsed_csv)
+    print(parsed_csv)
