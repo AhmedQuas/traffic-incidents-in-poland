@@ -6,28 +6,72 @@ def download_all():
     """
 
     """
-    #for key, value in dataset_driver_age.items():
-    #    download_dataset(value[0], value[1], key)
-    
-    #print("========Driver age end=============")
 
-    #for key, value in dataset_week_day.items():
-    #    download_dataset(value[0], value[1], key)
+    driver_age = []
+    week_day = []
+    months = []
+    hours = []
+    place_characteristics = []
 
-    #print("========Days of weeek end==========")
+    print('Download status:')
 
-    #for key, value in dataset_months.items():
-    #    download_dataset(value[0], value[1], key)
+    for year, [url, offset] in dataset_driver_age.items():
 
-    #print("============Months end=============")
+        dataset = download_dataset(url, offset, year)
+        if year == '2020':
+            driver_age.append(dataset)
+        else:
+            driver_age.append(dataset[1:])
 
-    #for key, value in dataset_hours.items():
-    #    download_dataset(value[0], value[1], key)
+    print(" - Driver age - OK!")
 
-    print("============Hours end=============")
+    for year, [url, offset] in dataset_week_day.items():
 
-    for key, value in dataset_place_characteristics.items():
-        download_dataset(value[0], value[1], key)
+        dataset = download_dataset(url, offset, year)
+        if year == '2020':
+            week_day.append(dataset)
+        else:
+            week_day.append(dataset[1:])
+
+    print(" - Days of weeek - OK!")
+
+    for year, [url, offset] in dataset_months.items():
+
+        dataset = download_dataset(url, offset, year)
+        if year == '2020':
+            months.append(dataset)
+        else:
+            months.append(dataset[1:])
+
+    print(" - Months - OK!")
+
+    for year, [url, offset] in dataset_hours.items():
+
+        dataset = download_dataset(url, offset, year)
+        if year == '2020':
+            hours.append(dataset)
+        else:
+            hours.append(dataset[1:])
+
+    print(" - Hours - OK!")
+
+    for year, [url, offset] in dataset_place_characteristics.items():
+
+        dataset = download_dataset(url, offset, year)
+        if year == '2020':
+            place_characteristics.append(dataset)
+        else:
+            place_characteristics.append(dataset[1:])
+
+    print("Download stage complete.")
+
+    return{
+        'driver_age': driver_age,
+        'week_day': week_day,
+        'months': months,
+        'hours': hours,
+        'place_characteristics': place_characteristics
+    }
 
 def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     """
@@ -77,4 +121,8 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     else:
         print('URL not found')
     
-    print(parsed_csv)
+    #Add year timestamp
+    for line in parsed_csv:
+        line.append(dataset_year)
+
+    return parsed_csv
