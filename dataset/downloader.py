@@ -1,6 +1,7 @@
 import requests
 from helpers.dataset_urls import *
 from .csv_parser import *
+from .xls_parser import *
 
 def download_all():
     """
@@ -82,39 +83,55 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     months_keywords = ['podział na miesiące', 'podziale na miesiące', '- miesiące']
     hours_keywords = ['podział na godziny', 'podziale na godziny', '- godziny']
     place_characteristics_keywords = ['charakterystyka miejsca', 'Charakterystyka miejsca']
+    place_characteristics_xlsx_keywords = ['w 2019 r. - dane zbiorcze']
 
     response = requests.get(dataset_url)
 
     if response.status_code == 200:
 
         response_dict = response.json()
-        tmp_filename = './dataset/tmp.csv'
+        tmp_filename = './dataset/tmp'
 
         title = response_dict['data']['attributes']['title']
         format = response_dict['data']['attributes']['format']
         url = response_dict['data']['attributes']['download_url']
         
         file = requests.get(url, allow_redirects=True)
-        open(tmp_filename,'wb').write(file.content)
 
         if format == 'csv':
+
+            tmp_filename = tmp_filename+'.csv'
+            open(tmp_filename,'wb').write(file.content)
+
             if [el for el in driver_age_keywords if(el in title)]:
-                parsed_csv = parse_csv_driver_age(tmp_filename, offset, dataset_year)
+                parsed_data = parse_csv_driver_age(tmp_filename, offset, dataset_year)
 
             elif [el for el in week_day_keywords if(el in title)]:
-                parsed_csv = parse_csv_week_day(tmp_filename, offset, dataset_year)
+                parsed_data = parse_csv_week_day(tmp_filename, offset, dataset_year)
 
             elif [el for el in months_keywords if(el in title)]:
-                parsed_csv = parse_csv_month(tmp_filename, offset, dataset_year)
+                parsed_data = parse_csv_month(tmp_filename, offset, dataset_year)
 
             elif [el for el in hours_keywords if(el in title)]:
-                parsed_csv = parse_csv_hours(tmp_filename, offset, dataset_year)
+                parsed_data = parse_csv_hours(tmp_filename, offset, dataset_year)
 
             elif [el for el in place_characteristics_keywords if(el in title)]:
-                parsed_csv = parse_csv_place_characteristics(tmp_filename, offset, dataset_year)
+                parsed_data = parse_csv_place_characteristics(tmp_filename, offset, dataset_year)
 
             else:
                 print('Unsupported dataset title:', title)
+
+        elif format =='xlsx':
+
+            tmp_filename = tmp_filename+'.xlsx'
+            open(tmp_filename,'wb').write(file.content)
+
+            if [el for el in place_characteristics_xlsx_keywords if(el in title)]:
+                parsed_data = parse_xlsx_place_characteristics(tmp_filename, offset, dataset_year)
+
+            else:
+                print('Unsupported dataset title:', title)
+
         else:
             print('Unsupported file format:', format)
 
@@ -122,7 +139,7 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
         print('URL not found')
     
     #Add year timestamp
-    for line in parsed_csv:
+    for line in parsed_data:
         line.append(dataset_year)
 
-    return parsed_csv
+    return parsed_data

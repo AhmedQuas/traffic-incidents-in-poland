@@ -116,7 +116,7 @@ def create_months_table(conn:sqlite3, dataset:Dict):
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, hours)
+        PRIMARY KEY(year, month)
     )
     """
 
@@ -226,12 +226,23 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
 
     for row in dataset:
         for i in range(len(row)):
-            data_tuple=(place_characteristic_values[i],
-                    int(row[i][1].replace(' ','')),
-                    int(row[i][2].replace(' ','')),
-                    int(row[i][3].replace(' ','')),
-                    int(row[i][4].replace(' ','')),
-                    int(row[i][5]))
+
+            if (row[i][5] == '2019'):
+                data_tuple=(place_characteristic_values[i],
+                        row[i][1],
+                        row[i][2],
+                        row[i][3],
+                        row[i][4],
+                        int(row[i][5]))
+
+            else:
+
+                data_tuple=(place_characteristic_values[i],
+                        int(row[i][1].replace(' ','')),
+                        int(row[i][2].replace(' ','')),
+                        int(row[i][3].replace(' ','')),
+                        int(row[i][4].replace(' ','')),
+                        int(row[i][5]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 

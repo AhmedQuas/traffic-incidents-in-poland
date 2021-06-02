@@ -2,5 +2,5 @@ env/*
 helpers/__pycache__/*
 dataset/__pycache__/*
 db/__pycache__/*
-dataset/tmp.csv
+dataset/tmp.*
 sqlite.db
