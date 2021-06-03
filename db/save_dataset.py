@@ -3,7 +3,7 @@ from sqlite3 import Error
 from typing import Dict
 from . import db
 
-def save_dataset_in_db(downloaded_data:Dict, db_file):
+def save_dataset_in_db(downloaded_data:Dict, db_file: str):
 
     conn = db.create_connection(db_file)
 
@@ -236,7 +236,6 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
                         int(row[i][5]))
 
             else:
-
                 data_tuple=(place_characteristic_values[i],
                         int(row[i][1].replace(' ','')),
                         int(row[i][2].replace(' ','')),

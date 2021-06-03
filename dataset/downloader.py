@@ -1,7 +1,7 @@
 import requests
 from helpers.dataset_urls import *
 from .csv_parser import *
-from .xls_parser import *
+from .excel_parser import *
 
 def download_all():
     """
