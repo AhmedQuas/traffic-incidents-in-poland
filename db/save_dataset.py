@@ -24,20 +24,21 @@ def create_driver_age_table(conn:sqlite3, dataset:Dict):
 
     CREATE TABLE IF NOT EXISTS driver_age(
         year integer,
-        age text,
+        age_name text,
         accidents integer,
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, age)
+        age_order integer,
+        PRIMARY KEY(year, age_order)
     )
     """
 
     db.create_table(conn, sql_create_driver_age_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO driver_age(age, accidents, killed, injured, collisions, year)
-    VALUES (?,?,?,?,?,?)
+    INSERT OR IGNORE INTO driver_age(age_name, accidents, killed, injured, collisions, year, age_order)
+    VALUES (?,?,?,?,?,?,?)
     """
 
     #Remove header
@@ -56,7 +57,8 @@ def create_driver_age_table(conn:sqlite3, dataset:Dict):
                     int(row[i][2].replace(' ','')),
                     int(row[i][3].replace(' ','')),
                     int(row[i][4].replace(' ','')),
-                    int(row[i][5].replace(' ','')))
+                    int(row[i][5]),
+                    db_helpers.get_driver_age_order(age_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -73,15 +75,15 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
         killed integer,
         injured integer,
         collisions integer,
-        week_day_id integer,
-        PRIMARY KEY(year, week_day_id)
+        week_day_order integer,
+        PRIMARY KEY(year, week_day_order)
     )
     """
 
     db.create_table(conn, sql_create_week_day_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO week_day(week_day_name, accidents, killed, injured, collisions, year, week_day_id)
+    INSERT OR IGNORE INTO week_day(week_day_name, accidents, killed, injured, collisions, year, week_day_order)
     VALUES (?,?,?,?,?,?,?)
     """
 
@@ -160,20 +162,21 @@ def create_hours_table(conn:sqlite3, dataset:Dict):
 
     CREATE TABLE IF NOT EXISTS hours(
         year integer,
-        hour text,
+        hour_name text,
         accidents integer,
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, hour)
+        hour_order integer,
+        PRIMARY KEY(year, hour_order)
     )
     """
 
     db.create_table(conn, sql_create_hours_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO hours(hour, accidents, killed, injured, collisions, year)
-    VALUES (?,?,?,?,?,?)
+    INSERT OR IGNORE INTO hours(hour_name, accidents, killed, injured, collisions, year, hour_order)
+    VALUES (?,?,?,?,?,?,?)
     """
 
     #Remove header
@@ -192,7 +195,8 @@ def create_hours_table(conn:sqlite3, dataset:Dict):
                     int(row[i][2].replace(' ','')),
                     int(row[i][3].replace(' ','')),
                     int(row[i][4].replace(' ','')),
-                    int(row[i][5]))
+                    int(row[i][5]),
+                    db_helpers.get_hour_order_number(hour_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -204,20 +208,21 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
 
     CREATE TABLE IF NOT EXISTS place_characteristics(
         year integer,
-        place_characteristic text,
+        place_characteristic_name text,
         accidents integer,
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, place_characteristic)
+        place_characteristic_order,
+        PRIMARY KEY(year, place_characteristic_order)
     )
     """
 
     db.create_table(conn, sql_create_hours_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO place_characteristics(place_characteristic, accidents, killed, injured, collisions, year)
-    VALUES (?,?,?,?,?,?)
+    INSERT OR IGNORE INTO place_characteristics(place_characteristic_name, accidents, killed, injured, collisions, year, place_characteristic_order)
+    VALUES (?,?,?,?,?,?,?)
     """
 
     #Remove header
@@ -238,7 +243,8 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
                         row[i][2],
                         row[i][3],
                         row[i][4],
-                        int(row[i][5]))
+                        int(row[i][5]),
+                        db_helpers.get_place_characteristic_number(place_characteristic_values[i]))
 
             else:
                 data_tuple=(place_characteristic_values[i],
@@ -246,7 +252,8 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
                         int(row[i][2].replace(' ','')),
                         int(row[i][3].replace(' ','')),
                         int(row[i][4].replace(' ','')),
-                        int(row[i][5]))
+                        int(row[i][5]),
+                        db_helpers.get_place_characteristic_number(place_characteristic_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
