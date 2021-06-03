@@ -68,20 +68,21 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
 
     CREATE TABLE IF NOT EXISTS week_day(
         year integer,
-        week_day text,
+        week_day_name text,
         accidents integer,
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, week_day)
+        week_day_id integer,
+        PRIMARY KEY(year, week_day_id)
     )
     """
 
     db.create_table(conn, sql_create_week_day_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO week_day(week_day, accidents, killed, injured, collisions, year)
-    VALUES (?,?,?,?,?,?)
+    INSERT OR IGNORE INTO week_day(week_day_name, accidents, killed, injured, collisions, year, week_day_id)
+    VALUES (?,?,?,?,?,?,?)
     """
 
     #Remove header
@@ -100,7 +101,8 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
                     int(row[i][2].replace(' ','')),
                     int(row[i][3].replace(' ','')),
                     int(row[i][4].replace(' ','')),
-                    int(row[i][5]))
+                    int(row[i][5]),
+                    db_helpers.get_day_order_number(weekday_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -117,15 +119,15 @@ def create_months_table(conn:sqlite3, dataset:Dict):
         killed integer,
         injured integer,
         collisions integer,
-        month_id,
-        PRIMARY KEY(year, month_id)
+        month_order,
+        PRIMARY KEY(year, month_order)
     )
     """
 
     db.create_table(conn, sql_create_months_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO months(month_name, accidents, killed, injured, collisions, year, month_id)
+    INSERT OR IGNORE INTO months(month_name, accidents, killed, injured, collisions, year, month_order)
     VALUES (?,?,?,?,?,?,?)
     """
 
@@ -146,7 +148,7 @@ def create_months_table(conn:sqlite3, dataset:Dict):
                     int(row[i][3].replace(' ','')),
                     int(row[i][4].replace(' ','')),
                     int(row[i][5]),
-                    db_helpers.get_month_number(month_values[i]))
+                    db_helpers.get_month_order_number(month_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
