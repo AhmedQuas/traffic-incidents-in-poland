@@ -2,6 +2,7 @@ import sqlite3
 from sqlite3 import Error
 from typing import Dict
 from . import db
+from helpers import db_helpers
 
 def save_dataset_in_db(downloaded_data:Dict, db_file: str):
 
@@ -111,20 +112,21 @@ def create_months_table(conn:sqlite3, dataset:Dict):
 
     CREATE TABLE IF NOT EXISTS months(
         year integer,
-        month text,
+        month_name text,
         accidents integer,
         killed integer,
         injured integer,
         collisions integer,
-        PRIMARY KEY(year, month)
+        month_id,
+        PRIMARY KEY(year, month_id)
     )
     """
 
     db.create_table(conn, sql_create_months_table)
 
     sql_insert_data = """
-    INSERT OR IGNORE INTO months(month, accidents, killed, injured, collisions, year)
-    VALUES (?,?,?,?,?,?)
+    INSERT OR IGNORE INTO months(month_name, accidents, killed, injured, collisions, year, month_id)
+    VALUES (?,?,?,?,?,?,?)
     """
 
     #Remove header
@@ -143,7 +145,8 @@ def create_months_table(conn:sqlite3, dataset:Dict):
                     int(row[i][2].replace(' ','')),
                     int(row[i][3].replace(' ','')),
                     int(row[i][4].replace(' ','')),
-                    int(row[i][5]))
+                    int(row[i][5]),
+                    db_helpers.get_month_number(month_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
