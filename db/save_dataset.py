@@ -41,9 +41,6 @@ def create_driver_age_table(conn:sqlite3, dataset:Dict):
     VALUES (?,?,?,?,?,?,?)
     """
 
-    #Remove header
-    dataset[0].pop(0)
-
     #Make sure that text convention is consistent
     age_values = []
 
@@ -86,9 +83,6 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
     INSERT OR IGNORE INTO week_day(week_day_name, accidents, killed, injured, collisions, year, week_day_order)
     VALUES (?,?,?,?,?,?,?)
     """
-
-    #Remove header
-    dataset[0].pop(0)
 
     #Make sure that text convention is consistent
     weekday_values = []
@@ -133,9 +127,6 @@ def create_months_table(conn:sqlite3, dataset:Dict):
     VALUES (?,?,?,?,?,?,?)
     """
 
-    #Remove header
-    dataset[0].pop(0)
-
     #Make sure that text convention is consistent
     month_values = []
 
@@ -179,9 +170,6 @@ def create_hours_table(conn:sqlite3, dataset:Dict):
     VALUES (?,?,?,?,?,?,?)
     """
 
-    #Remove header
-    dataset[0].pop(0)
-
     #Make sure that text convention is consistent
     hour_values = []
 
@@ -224,9 +212,6 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
     INSERT OR IGNORE INTO place_characteristics(place_characteristic_name, accidents, killed, injured, collisions, year, place_characteristic_order)
     VALUES (?,?,?,?,?,?,?)
     """
-
-    #Remove header
-    dataset[0].pop(0)
 
     #Make sure that text convention is consistent
     place_characteristic_values = []

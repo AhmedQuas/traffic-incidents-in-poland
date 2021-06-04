@@ -19,51 +19,37 @@ def download_all():
     for year, [url, offset] in dataset_driver_age.items():
 
         dataset = download_dataset(url, offset, year)
-        if year == '2020':
-            driver_age.append(dataset)
-        else:
-            driver_age.append(dataset[1:])
+        driver_age.append(dataset)
 
     print(" - Driver age - OK!")
 
     for year, [url, offset] in dataset_week_day.items():
 
         dataset = download_dataset(url, offset, year)
-        if year == '2020':
-            week_day.append(dataset)
-        else:
-            week_day.append(dataset[1:])
+        week_day.append(dataset)
 
     print(" - Days of weeek - OK!")
 
     for year, [url, offset] in dataset_months.items():
 
         dataset = download_dataset(url, offset, year)
-        if year == '2020':
-            months.append(dataset)
-        else:
-            months.append(dataset[1:])
+        months.append(dataset)
 
     print(" - Months - OK!")
 
     for year, [url, offset] in dataset_hours.items():
 
         dataset = download_dataset(url, offset, year)
-        if year == '2020':
-            hours.append(dataset)
-        else:
-            hours.append(dataset[1:])
+        hours.append(dataset)
 
     print(" - Hours - OK!")
 
     for year, [url, offset] in dataset_place_characteristics.items():
 
         dataset = download_dataset(url, offset, year)
-        if year == '2020':
-            place_characteristics.append(dataset)
-        else:
-            place_characteristics.append(dataset[1:])
+        place_characteristics.append(dataset)
 
+    print(" - Place characteristics - OK!")
     print("Download stage complete.")
 
     return{
