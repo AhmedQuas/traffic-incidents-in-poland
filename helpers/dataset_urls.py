@@ -36,6 +36,7 @@ dataset_hours = {
 dataset_place_characteristics = {
     '2020': ['https://api.dane.gov.pl/1.4/resources/29552,zdarzenia-w-ruchu-drogowych-w-2020-r-statystyka-ogolna-charakterystyka-miejsca?lang=pl', 3],
     '2019': ['https://api.dane.gov.pl/1.4/resources/24624,zdarzenia-w-ruchu-drogowym-w-2019-r-dane-zbiorcze?lang=pl', 2],
+    '2018': ['https://api.dane.gov.pl/1.4/resources/16316,zdarzenia-w-ruchu-drogowym-w-2018-r-charakterystyka-miejsca?lang=pl', 3],
     '2017': ['https://api.dane.gov.pl/1.4/resources/5963,charakterystyka-miejsca-zdarzenia-w-2017-r?lang=pl', 5],
     '2016': ['https://api.dane.gov.pl/1.4/resources/5945,zdarzenia-w-ruchu-drogowym-w-2016-r-charakterystyka-miejsca?lang=pl', 0]
 }

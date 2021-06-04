@@ -237,7 +237,7 @@ def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
     for row in dataset:
         for i in range(len(row)):
 
-            if (row[i][5] == '2019'):
+            if (row[i][5] in ['2019','2018']):
                 data_tuple=(place_characteristic_values[i],
                         row[i][1],
                         row[i][2],

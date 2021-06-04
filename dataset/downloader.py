@@ -83,7 +83,8 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     months_keywords = ['podział na miesiące', 'podziale na miesiące', '- miesiące']
     hours_keywords = ['podział na godziny', 'podziale na godziny', '- godziny']
     place_characteristics_keywords = ['charakterystyka miejsca', 'Charakterystyka miejsca']
-    place_characteristics_xlsx_keywords = ['w 2019 r. - dane zbiorcze']
+    place_characteristics_xlsx_keywords = 'w 2019 r. - dane zbiorcze'
+    place_characteristics_xls_keywords = '2018 r. - charakterystyka miejsca'
 
     response = requests.get(dataset_url)
 
@@ -126,8 +127,19 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
             tmp_filename = tmp_filename+'.xlsx'
             open(tmp_filename,'wb').write(file.content)
 
-            if [el for el in place_characteristics_xlsx_keywords if(el in title)]:
+            if place_characteristics_xlsx_keywords in title:
                 parsed_data = parse_xlsx_place_characteristics(tmp_filename, offset, dataset_year)
+
+            else:
+                print('Unsupported dataset title:', title)
+
+        elif format =='xls':
+
+            tmp_filename = tmp_filename+'.xls'
+            open(tmp_filename,'wb').write(file.content)
+
+            if place_characteristics_xls_keywords in title:
+                parsed_data = parse_xls_place_characteristics(tmp_filename, offset, dataset_year)
 
             else:
                 print('Unsupported dataset title:', title)
