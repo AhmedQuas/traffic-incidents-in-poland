@@ -18,6 +18,8 @@ def save_dataset_in_db(downloaded_data:Dict, db_file: str):
 
     conn.close()
 
+    print("Saving into SQLite stage complete.")
+
 def create_driver_age_table(conn:sqlite3, dataset:Dict):
 
     sql_create_driver_age_table = """
@@ -49,13 +51,24 @@ def create_driver_age_table(conn:sqlite3, dataset:Dict):
 
     for row in dataset:
         for i in range(len(row)):
-            data_tuple=(age_values[i],
-                    int(row[i][1].replace(' ','')),
-                    int(row[i][2].replace(' ','')),
-                    int(row[i][3].replace(' ','')),
-                    int(row[i][4].replace(' ','')),
-                    int(row[i][5]),
-                    db_helpers.get_driver_age_order(age_values[i]))
+
+            if (row[i][5] in ['2015']):
+                data_tuple=(age_values[i],
+                        row[i][1],
+                        row[i][2],
+                        row[i][3],
+                        row[i][4],
+                        int(row[i][5]),
+                        db_helpers.get_driver_age_order(age_values[i]))
+
+            else:
+                data_tuple=(age_values[i],
+                        int(row[i][1].replace(' ','')),
+                        int(row[i][2].replace(' ','')),
+                        int(row[i][3].replace(' ','')),
+                        int(row[i][4].replace(' ','')),
+                        int(row[i][5]),
+                        db_helpers.get_driver_age_order(age_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -92,13 +105,24 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
 
     for row in dataset:
         for i in range(len(row)):
-            data_tuple=(weekday_values[i],
-                    int(row[i][1].replace(' ','')),
-                    int(row[i][2].replace(' ','')),
-                    int(row[i][3].replace(' ','')),
-                    int(row[i][4].replace(' ','')),
-                    int(row[i][5]),
-                    db_helpers.get_day_order_number(weekday_values[i]))
+
+            if (row[i][5] in ['2015']):
+                data_tuple=(weekday_values[i],
+                        row[i][1],
+                        row[i][2],
+                        row[i][3],
+                        row[i][4],
+                        int(row[i][5]),
+                        db_helpers.get_day_order_number(weekday_values[i]))
+
+            else:
+                data_tuple=(weekday_values[i],
+                        int(row[i][1].replace(' ','')),
+                        int(row[i][2].replace(' ','')),
+                        int(row[i][3].replace(' ','')),
+                        int(row[i][4].replace(' ','')),
+                        int(row[i][5]),
+                        db_helpers.get_day_order_number(weekday_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -135,13 +159,24 @@ def create_months_table(conn:sqlite3, dataset:Dict):
 
     for row in dataset:
         for i in range(len(row)):
-            data_tuple=(month_values[i],
-                    int(row[i][1].replace(' ','')),
-                    int(row[i][2].replace(' ','')),
-                    int(row[i][3].replace(' ','')),
-                    int(row[i][4].replace(' ','')),
-                    int(row[i][5]),
-                    db_helpers.get_month_order_number(month_values[i]))
+
+            if (row[i][5] in ['2015']):
+                data_tuple=(month_values[i],
+                        row[i][1],
+                        row[i][2],
+                        row[i][3],
+                        row[i][4],
+                        int(row[i][5]),
+                        db_helpers.get_month_order_number(month_values[i]))
+
+            else:
+                data_tuple=(month_values[i],
+                        int(row[i][1].replace(' ','')),
+                        int(row[i][2].replace(' ','')),
+                        int(row[i][3].replace(' ','')),
+                        int(row[i][4].replace(' ','')),
+                        int(row[i][5]),
+                        db_helpers.get_month_order_number(month_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 
@@ -178,13 +213,24 @@ def create_hours_table(conn:sqlite3, dataset:Dict):
 
     for row in dataset:
         for i in range(len(row)):
-            data_tuple=(hour_values[i],
-                    int(row[i][1].replace(' ','')),
-                    int(row[i][2].replace(' ','')),
-                    int(row[i][3].replace(' ','')),
-                    int(row[i][4].replace(' ','')),
-                    int(row[i][5]),
-                    db_helpers.get_hour_order_number(hour_values[i]))
+
+            if (row[i][5] in ['2015']):
+                data_tuple=(hour_values[i],
+                        row[i][1],
+                        row[i][2],
+                        row[i][3],
+                        row[i][4],
+                        int(row[i][5]),
+                        db_helpers.get_hour_order_number(hour_values[i]))
+
+            else:
+                data_tuple=(hour_values[i],
+                        int(row[i][1].replace(' ','')),
+                        int(row[i][2].replace(' ','')),
+                        int(row[i][3].replace(' ','')),
+                        int(row[i][4].replace(' ','')),
+                        int(row[i][5]),
+                        db_helpers.get_hour_order_number(hour_values[i]))
 
             db.insert_data(conn, sql_insert_data, data_tuple)
 

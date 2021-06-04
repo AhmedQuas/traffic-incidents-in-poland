@@ -40,3 +40,7 @@ dataset_place_characteristics = {
     '2017': ['https://api.dane.gov.pl/1.4/resources/5963,charakterystyka-miejsca-zdarzenia-w-2017-r?lang=pl', 6],
     '2016': ['https://api.dane.gov.pl/1.4/resources/5945,zdarzenia-w-ruchu-drogowym-w-2016-r-charakterystyka-miejsca?lang=pl', 1]
 }
+
+datset_2015_data_aggregation = {
+    'url': 'https://api.dane.gov.pl/1.4/resources/4233,zdarzenia-w-ruchu-drogowym-w-2015-r?lang=pl'
+}
