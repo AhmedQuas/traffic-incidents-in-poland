@@ -19,7 +19,7 @@ def plot_diagrams(db_file: str):
     pd.options.mode.chained_assignment = None  
 
     #driver_age.accidents(conn)
-    driver_age.pie_collisions(conn)
+    #driver_age.pie_collisions(conn)
     #driver_age.pie_accidents(conn)
     #driver_age.pie_killed(conn)
     #driver_age.pie_injured(conn)
@@ -28,6 +28,9 @@ def plot_diagrams(db_file: str):
     #week_day.avg_week_day(conn)
     #week_day.accidents_weekend_week(conn)
     #week_day.killed_weekend_week(conn)
+
+    #place_characteristics.active_unguarded_level_crossing_accidents(conn)
+    #place_characteristics.active_crossing_level_year_accidents(conn)
 
     #month.covid_19_20(conn)
 
