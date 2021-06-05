@@ -9,7 +9,7 @@ def covid_19_20(conn: sqlite3):
 
     df = pd.read_sql_query("SELECT year, week_day_name, accidents, week_day_order FROM week_day WHERE year IN('2020', '2019')", conn)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df_2019 = df[df['year']==2019].set_index('week_day_name')
     df_2020 = df[df['year']==2020].set_index('week_day_name')
@@ -27,13 +27,14 @@ def covid_19_20(conn: sqlite3):
     ax.yaxis.grid(True)
     plt.xticks(rotation=45)
 
+    plt.savefig('final_plots/week_day/covid_19_20.png')
     plt.show()
 
 def avg_week_day(conn: sqlite3):
 
     df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, week_day_name, week_day_order FROM week_day GROUP BY week_day_name", conn)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df = df.set_index('week_day_name')
     df = df.sort_values('week_day_order')
@@ -55,7 +56,7 @@ def avg_week_day_with_2020(conn: sqlite3):
     df_2020 = pd.read_sql_query("SELECT accidents, week_day_name, week_day_order FROM week_day WHERE year=='2020'", conn)
 
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df_avg = df_avg.set_index('week_day_name')
     df_avg = df_avg.sort_values('week_day_order')
@@ -75,6 +76,7 @@ def avg_week_day_with_2020(conn: sqlite3):
 
     plt.xticks(rotation=45)
 
+    plt.savefig('final_plots/week_day/avg_week_day_with_2020.png')
     plt.show()
 
 def accidents_weekend_week(conn: sqlite3):
@@ -92,10 +94,11 @@ def accidents_weekend_week(conn: sqlite3):
 
     week = df['accidents'].sum() - weekend
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(12,12))
     ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
     ax.set_title('Porównanie liczby wypadków w weekendy i dni robocze, 2020')
 
+    plt.savefig('final_plots/week_day/accidents_weekend_week.png')
     plt.show()
 
 def killed_weekend_week(conn: sqlite3):
@@ -113,10 +116,11 @@ def killed_weekend_week(conn: sqlite3):
 
     week = df['killed'].sum() - weekend
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(12,12))
     ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
     ax.set_title('Porównanie liczby ofiar w weekendy i dni robocze, 2020')
 
+    plt.savefig('final_plots/week_day/killed_weekend_week.png')
     plt.show()
 
 def absoulte_relative_autopct(values):

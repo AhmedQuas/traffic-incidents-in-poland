@@ -9,7 +9,7 @@ def active_unguarded_level_crossing_accidents(conn: sqlite3):
 
     df = pd.read_sql_query("SELECT place_characteristic_name, accidents FROM place_characteristics WHERE year=='2020'", conn)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df_active = df[df['place_characteristic_name']=='Przejazd kolejowy strzeżony'].accidents.tolist()
     df_unguarder = df[df['place_characteristic_name']=='Przejazd kolejowy niestrzeżony'].accidents.tolist()
@@ -19,6 +19,7 @@ def active_unguarded_level_crossing_accidents(conn: sqlite3):
     ax.set_ylabel('Liczba wypadków')
     ax.yaxis.grid(True)
 
+    plt.savefig('final_plots/place_characteristic/active_unguarded_level_crossing_accidents.png')
     plt.show()
 
 def active_crossing_level_year_accidents(conn: sqlite3):
@@ -32,7 +33,7 @@ def active_crossing_level_year_accidents(conn: sqlite3):
     df = df.set_index('year')
     df = df.sort_values(['year'], ascending=[False])
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     max = df['accidents'].max()
 
@@ -42,4 +43,5 @@ def active_crossing_level_year_accidents(conn: sqlite3):
     ax.xaxis.grid(True)
     plt.xticks(range(0,max+1))
 
+    plt.savefig('final_plots/place_characteristic/active_crossing_level_year_accidents.png')
     plt.show()

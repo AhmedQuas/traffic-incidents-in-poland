@@ -30,7 +30,7 @@ def accidents_min_max_year(conn: sqlite3):
 
     p1 = pd.concat([df], levels = ['stst','asd'],axis =1).plot.bar(grid=True, figsize=(10,10))
 
-    p1.set_title('Powrównanie maksymalnej i minimalnej liczby wypdaków w latach 2015 - 2020')
+    p1.set_title('Powrównanie maksymalnej i minimalnej liczby wypadków w latach 2015 - 2020')
     p1.set_xlabel('Miesiące')
     p1.set_ylabel('Liczba wypadków')
 

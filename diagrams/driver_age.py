@@ -27,7 +27,7 @@ def accidents(conn: sqlite3):
 
     df.index = [2015, 2016, 2017, 2018, 2019, 2020]
 
-    p1 = pd.concat([df], axis=1).plot.bar(grid=True)
+    p1 = pd.concat([df], axis=1).plot.bar(grid=True, figsize=(18,10))
 
     p1.set_title('Powrównanie liczby wypadków w zależności od grupy wiekowej - sprawcy')
     p1.set_xlabel('Grupy wiekowe')
@@ -36,6 +36,7 @@ def accidents(conn: sqlite3):
     plt.xticks(rotation=45)
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 
+    plt.savefig('final_plots/driver_age/accidents.png')
     plt.show()
 
 def pie_collisions(conn: sqlite3):
@@ -48,12 +49,13 @@ def pie_collisions(conn: sqlite3):
     df = df.sort_values(['age_order'])
     df = df.set_index('age_name')
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(10,10))
     ax1.pie(df['collisions'], labels=df.index.tolist(), autopct=absoulte_relative_autopct(df['collisions']), startangle=180)
     ax1.axis('equal')
 
     ax1.set_title('Liczba kolizji w zależności od grupy wiekowej - sprawcy, 2020')
 
+    plt.savefig('final_plots/driver_age/pie_collisions.png')
     plt.show()
 
 def pie_accidents(conn: sqlite3):
@@ -66,12 +68,13 @@ def pie_accidents(conn: sqlite3):
     df = df.sort_values(['age_order'])
     df = df.set_index('age_name')
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(10,10))
     ax1.pie(df['accidents'], labels=df.index.tolist(), autopct=absoulte_relative_autopct(df['accidents']), startangle=180)
     ax1.axis('equal')
 
     ax1.set_title('Liczba wypadków w zależności od grupy wiekowej - sprawcy, 2020')
 
+    plt.savefig('final_plots/driver_age/pie_accidents.png')
     plt.show()
 
 def pie_killed(conn: sqlite3):
@@ -84,12 +87,13 @@ def pie_killed(conn: sqlite3):
     df = df.sort_values(['age_order'])
     df = df.set_index('age_name')
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(10,10))
     ax1.pie(df['killed'], labels=df.index.tolist(), pctdistance=0.7, autopct=absoulte_relative_autopct(df['killed']), startangle=180)
     ax1.axis('equal')
 
     ax1.set_title('Liczba ofiar śmiertelnych w zależności od grupy wiekowej do jakiej należy sprawca, 2020')
 
+    plt.savefig('final_plots/driver_age/pie_killed.png')
     plt.show()
 
 def pie_injured(conn: sqlite3):
@@ -102,12 +106,13 @@ def pie_injured(conn: sqlite3):
     df = df.sort_values(['age_order'])
     df = df.set_index('age_name')
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(10,10))
     ax1.pie(df['injured'], labels=df.index.tolist(), pctdistance=0.7, autopct=absoulte_relative_autopct(df['injured']), startangle=180)
     ax1.axis('equal')
 
     ax1.set_title('Liczba rannych w zależności od grupy wiekowej do jakiej należy sprawca, 2020')
 
+    plt.savefig('final_plots/driver_age/pie_injured.png')
     plt.show()
 
 def absoulte_relative_autopct(values):

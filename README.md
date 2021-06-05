@@ -14,3 +14,5 @@ source env/bin/activate
 pip install -r requirements.txt
 python3 main.py
 ```
+
+All plots will be saved in final_plots directory

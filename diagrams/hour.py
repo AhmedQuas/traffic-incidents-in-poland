@@ -11,7 +11,7 @@ def avg_hour(conn: sqlite3):
 
     df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, hour_name, hour_order FROM hours GROUP BY hour_name", conn)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df = df.set_index('hour_name')
     df = df.sort_values('hour_order')
@@ -23,6 +23,7 @@ def avg_hour(conn: sqlite3):
     ax.bar(df.index, df['average'])
     plt.xticks(rotation=45)
 
+    plt.savefig('final_plots/hour/avg_hour.png')
     plt.show()
 
 def avg_hour_with_2020(conn: sqlite3):
@@ -34,7 +35,7 @@ def avg_hour_with_2020(conn: sqlite3):
     df_2020 = pd.read_sql_query("SELECT accidents, hour_name, hour_order FROM hours WHERE year=='2020'", conn)
 
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     df_avg = df_avg.set_index('hour_name')
     df_avg = df_avg.sort_values('hour_order')
@@ -54,6 +55,7 @@ def avg_hour_with_2020(conn: sqlite3):
 
     plt.xticks(rotation=45)
 
+    plt.savefig('final_plots/hour/avg_hour_with_2020.png')
     plt.show()
 
 def rush_hours(conn: sqlite3):
@@ -73,12 +75,13 @@ def rush_hours(conn: sqlite3):
     afternoon_rush_hours = sum(afternoon_rush_hours_list)
 
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,10))
 
     ax.bar(['Poranne godziny szczytu(7-9)','Popołudniowe godziny szczytu(15-17)'], [morning_rush_hours, afternoon_rush_hours])
     ax.set_title('Porównanie liczby wypadków w zależności od pory godzin szczytu, 2020')
     ax.yaxis.grid(True)
 
+    plt.savefig('final_plots/hour/rush_hours.png')
     plt.show()
 
 def time_day(conn: sqlite3):
@@ -101,12 +104,13 @@ def time_day(conn: sqlite3):
 
     x_axis = [morning, afternoon, evening]
 
-    fig1, ax1 = plt.subplots()
+    fig1, ax1 = plt.subplots(figsize=(10,10))
     ax1.pie(x_axis, labels=['Godziny poranne(4-12)','Godziny popołudniowe(12-20)','Godziny nocne(20-4)'], autopct=absoulte_relative_autopct(x_axis), startangle=180)
     ax1.axis('equal')
 
     ax1.set_title('Liczba wypadków w zależności od pory dnia, 2020')
 
+    plt.savefig('final_plots/hour/time_day.png')
     plt.show()
 
 def absoulte_relative_autopct(values):
