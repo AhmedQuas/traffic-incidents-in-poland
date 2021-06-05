@@ -32,6 +32,10 @@ def plot_diagrams(db_file: str):
     #place_characteristics.active_unguarded_level_crossing_accidents(conn)
     #place_characteristics.active_crossing_level_year_accidents(conn)
 
+    #hour.avg_hour(conn)
+    #hour.rush_hours(conn)
+    #hour.time_day(conn)
+
     #month.covid_19_20(conn)
 
     conn.close()
