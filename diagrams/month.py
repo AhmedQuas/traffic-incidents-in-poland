@@ -43,3 +43,25 @@ def avg_month(conn: sqlite3):
     plt.xticks(rotation=45)
 
     plt.show()
+
+def pie_month(conn: sqlite3):
+
+    df = pd.read_sql_query("SELECT month_name, accidents, month_order FROM months WHERE year=='2020'", conn)
+
+    df = df.sort_values(['month_order'])
+    df = df.set_index('month_name')
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(df['accidents'], labels=df.index.tolist(), pctdistance=0.7, autopct=absoulte_relative_autopct(df['accidents']), startangle=90)
+    ax1.axis('equal')
+
+    ax1.set_title('Liczba wypadków w podziale na miesiące, 2020')
+
+    plt.show()
+
+def absoulte_relative_autopct(values):
+    def calc(pct):
+        total = sum(values)
+        val = int(round(pct*total/100.0))
+        return '{p:.2f}% ({v:d})'.format(p=pct,v=val)
+    return calc

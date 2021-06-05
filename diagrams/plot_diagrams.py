@@ -28,6 +28,7 @@ def plot_diagrams(db_file: str):
     #week_day.avg_week_day(conn)
     #week_day.accidents_weekend_week(conn)
     #week_day.killed_weekend_week(conn)
+    #week_day.avg_week_day_with_2020(conn)
 
     #place_characteristics.active_unguarded_level_crossing_accidents(conn)
     #place_characteristics.active_crossing_level_year_accidents(conn)
@@ -35,8 +36,10 @@ def plot_diagrams(db_file: str):
     #hour.avg_hour(conn)
     #hour.rush_hours(conn)
     #hour.time_day(conn)
+    #hour.avg_hour_with_2020(conn)
 
     #month.covid_19_20(conn)
     #month.avg_month(conn)
+    #month.pie_month(conn)
 
     conn.close()

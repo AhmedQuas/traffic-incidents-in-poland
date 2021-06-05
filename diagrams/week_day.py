@@ -46,6 +46,37 @@ def avg_week_day(conn: sqlite3):
 
     plt.show()
 
+def avg_week_day_with_2020(conn: sqlite3):
+    """
+
+    """
+
+    df_avg = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, week_day_name, week_day_order FROM week_day GROUP BY week_day_name", conn)
+    df_2020 = pd.read_sql_query("SELECT accidents, week_day_name, week_day_order FROM week_day WHERE year=='2020'", conn)
+
+
+    fig, ax = plt.subplots()
+
+    df_avg = df_avg.set_index('week_day_name')
+    df_avg = df_avg.sort_values('week_day_order')
+
+    df_2020 = df_2020.set_index('week_day_name')
+    df_2020 = df_2020.sort_values('week_day_order')
+
+
+    ax.set_title('Porównanie danych z 2020 ze średnią z lat 2015-2020 - podział ze względu na dzień zdarzenia')
+    ax.set_xlabel('Godzina zdarzenia')
+    ax.set_ylabel('Liczba wypadków')
+    ax.yaxis.grid(True)
+
+    ax.bar(df_avg.index, df_avg['average'], color='none', edgecolor = 'r')
+    ax.bar(df_2020.index, df_2020['accidents'], color='b', alpha=0.7 ,edgecolor = 'b')
+    ax.legend(['Średnia w latach 2015-2020','2020'])
+
+    plt.xticks(rotation=45)
+
+    plt.show()
+
 def accidents_weekend_week(conn: sqlite3):
     """
 
