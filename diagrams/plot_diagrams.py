@@ -42,6 +42,7 @@ def plot_diagrams(db_file: str):
     #month.avg_month(conn)
     #month.pie_month(conn)
 
-    trends.accidents_min_max_year(conn)
+    #trends.accidents_min_max_year(conn)
+    #trends.year_aggregation(conn)
 
     conn.close()
