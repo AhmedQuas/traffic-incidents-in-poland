@@ -18,8 +18,13 @@ def plot_diagrams(db_file: str):
 
     pd.options.mode.chained_assignment = None  
 
-    #month.covid_19_20(conn)
+    #driver_age.accidents(conn)
+    #driver_age.pie_collisions(conn)
+    #driver_age.pie_killed(conn)
+    #driver_age.pie_injured(conn)
+
     #week_day.covid_19_20(conn)
-    driver_age.accidents(conn)
+
+    #month.covid_19_20(conn)
 
     conn.close()
