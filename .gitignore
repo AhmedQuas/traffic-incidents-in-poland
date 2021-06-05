@@ -2,5 +2,6 @@ env/*
 helpers/__pycache__/*
 dataset/__pycache__/*
 db/__pycache__/*
+diagrams/__pycache__/*
 dataset/tmp.*
 sqlite.db
