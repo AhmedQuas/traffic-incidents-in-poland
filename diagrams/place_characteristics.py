@@ -17,6 +17,7 @@ def active_unguarded_level_crossing_accidents(conn: sqlite3):
     ax.bar(['Przejazd kolejowy strzeżony','Przejazd kolejowy niestrzeżony'], [df_active[0], df_unguarder[0]])
     ax.set_title('Liczba wypadków w zależności od typu przejazdu kolejowego w 2020')
     ax.set_ylabel('Liczba wypadków')
+    ax.yaxis.grid(True)
 
     plt.show()
 
@@ -38,6 +39,7 @@ def active_crossing_level_year_accidents(conn: sqlite3):
     ax.barh(df.index, df['accidents'])
     ax.set_title('Liczba wypadków w na przejazdach kolejowych strzeżonych w latach 2016 - 2020')
     ax.set_xlabel('Liczba wypadków')
+    ax.xaxis.grid(True)
     plt.xticks(range(0,max+1))
 
     plt.show()

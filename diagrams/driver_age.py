@@ -52,7 +52,7 @@ def pie_collisions(conn: sqlite3):
     ax1.pie(df['collisions'], labels=df.index.tolist(), autopct=absoulte_relative_autopct(df['collisions']), startangle=180)
     ax1.axis('equal')
 
-    ax1.set_title('Liczba kolizji w zależności od grupy wiekowej - sprawcy')
+    ax1.set_title('Liczba kolizji w zależności od grupy wiekowej - sprawcy, 2020')
 
     plt.show()
 
@@ -70,7 +70,7 @@ def pie_accidents(conn: sqlite3):
     ax1.pie(df['accidents'], labels=df.index.tolist(), autopct=absoulte_relative_autopct(df['accidents']), startangle=180)
     ax1.axis('equal')
 
-    ax1.set_title('Liczba wypadków w zależności od grupy wiekowej - sprawcy')
+    ax1.set_title('Liczba wypadków w zależności od grupy wiekowej - sprawcy, 2020')
 
     plt.show()
 
@@ -88,7 +88,7 @@ def pie_killed(conn: sqlite3):
     ax1.pie(df['killed'], labels=df.index.tolist(), pctdistance=0.7, autopct=absoulte_relative_autopct(df['killed']), startangle=180)
     ax1.axis('equal')
 
-    ax1.set_title('Liczba ofiar śmiertelnych w zależności od grupy wiekowej do jakiej należy sprawca')
+    ax1.set_title('Liczba ofiar śmiertelnych w zależności od grupy wiekowej do jakiej należy sprawca, 2020')
 
     plt.show()
 
@@ -106,7 +106,7 @@ def pie_injured(conn: sqlite3):
     ax1.pie(df['injured'], labels=df.index.tolist(), pctdistance=0.7, autopct=absoulte_relative_autopct(df['injured']), startangle=180)
     ax1.axis('equal')
 
-    ax1.set_title('Liczba rannych w zależności od grupy wiekowej do jakiej należy sprawca')
+    ax1.set_title('Liczba rannych w zależności od grupy wiekowej do jakiej należy sprawca, 2020')
 
     plt.show()
 

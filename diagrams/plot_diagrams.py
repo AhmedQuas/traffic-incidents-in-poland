@@ -37,5 +37,6 @@ def plot_diagrams(db_file: str):
     #hour.time_day(conn)
 
     #month.covid_19_20(conn)
+    #month.avg_month(conn)
 
     conn.close()

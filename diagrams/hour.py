@@ -18,8 +18,7 @@ def avg_hour(conn: sqlite3):
     ax.set_title('Średnia liczba wypadków w zależności od godziny wypadku w latach 2015 - 2020')
     ax.set_xlabel('Godzina zdarzenia')
     ax.set_ylabel('Liczba wypadków')
-
-    #print(df)
+    ax.yaxis.grid(True)
 
     ax.bar(df.index, df['average'])
     plt.xticks(rotation=45)
@@ -46,7 +45,8 @@ def rush_hours(conn: sqlite3):
     fig, ax = plt.subplots()
 
     ax.bar(['Poranne godziny szczytu(7-9)','Popołudniowe godziny szczytu(15-17)'], [morning_rush_hours, afternoon_rush_hours])
-    ax.set_title('Porównanie liczby wypadków w zależności od pory godzin szczytu')
+    ax.set_title('Porównanie liczby wypadków w zależności od pory godzin szczytu, 2020')
+    ax.yaxis.grid(True)
 
     plt.show()
 
@@ -74,7 +74,7 @@ def time_day(conn: sqlite3):
     ax1.pie(x_axis, labels=['Godziny poranne(4-12)','Godziny popołudniowe(12-20)','Godziny nocne(20-4)'], autopct=absoulte_relative_autopct(x_axis), startangle=180)
     ax1.axis('equal')
 
-    ax1.set_title('Liczba wypadków w zależności od pory dnia')
+    ax1.set_title('Liczba wypadków w zależności od pory dnia, 2020')
 
     plt.show()
 

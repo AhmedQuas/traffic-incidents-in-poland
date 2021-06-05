@@ -20,7 +20,26 @@ def covid_19_20(conn: sqlite3):
     ax.set_title('Powrównanie liczby wypadków w latach 2019 i 2020')
     ax.set_xlabel('Miesiące')
     ax.set_ylabel('Liczba wypadków')
+    ax.yaxis.grid(True)
     ax.legend(['2019', '2020'])
+    plt.xticks(rotation=45)
+
+    plt.show()
+
+def avg_month(conn: sqlite3):
+
+
+    df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, month_name, month_order FROM months GROUP BY month_name", conn)
+
+    fig, ax = plt.subplots()
+
+    df = df.set_index('month_name')
+    df = df.sort_values('month_order')
+    ax.set_title('Średnia liczba wypadków w latach 2015 - 2020 - podział na miesiące')
+    ax.set_ylabel('Liczba wypadków')
+    ax.yaxis.grid(True)
+
+    ax.bar(df.index, df['average'])
     plt.xticks(rotation=45)
 
     plt.show()

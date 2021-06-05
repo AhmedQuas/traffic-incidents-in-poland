@@ -24,6 +24,7 @@ def covid_19_20(conn: sqlite3):
     ax.set_xlabel('Dni tygodnia')
     ax.set_ylabel('Liczba wypadków')
     ax.legend(['2019', '2020'])
+    ax.yaxis.grid(True)
     plt.xticks(rotation=45)
 
     plt.show()
@@ -39,11 +40,9 @@ def avg_week_day(conn: sqlite3):
     ax.set_title('Średnia liczba wypadków w zależności od dnia tygodnia w latach 2015 - 2020')
     ax.set_xlabel('Dni tygodnia')
     ax.set_ylabel('Liczba wypadków')
-
-    #print(df)
+    ax.yaxis.grid(True)
 
     ax.bar(df.index, df['average'])
-    #plt.xticks(rotation=45)
 
     plt.show()
 
@@ -64,7 +63,7 @@ def accidents_weekend_week(conn: sqlite3):
 
     fig, ax = plt.subplots()
     ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
-    ax.set_title('Porównanie liczby wypadków w weekendy i dni robocze')
+    ax.set_title('Porównanie liczby wypadków w weekendy i dni robocze, 2020')
 
     plt.show()
 
@@ -85,7 +84,7 @@ def killed_weekend_week(conn: sqlite3):
 
     fig, ax = plt.subplots()
     ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
-    ax.set_title('Porównanie liczby ofiar w weekendy i dni robocze')
+    ax.set_title('Porównanie liczby ofiar w weekendy i dni robocze, 2020')
 
     plt.show()
 
