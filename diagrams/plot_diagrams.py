@@ -19,11 +19,15 @@ def plot_diagrams(db_file: str):
     pd.options.mode.chained_assignment = None  
 
     #driver_age.accidents(conn)
-    #driver_age.pie_collisions(conn)
+    driver_age.pie_collisions(conn)
+    #driver_age.pie_accidents(conn)
     #driver_age.pie_killed(conn)
     #driver_age.pie_injured(conn)
 
     #week_day.covid_19_20(conn)
+    #week_day.avg_week_day(conn)
+    #week_day.accidents_weekend_week(conn)
+    #week_day.killed_weekend_week(conn)
 
     #month.covid_19_20(conn)
 

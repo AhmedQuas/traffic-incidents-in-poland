@@ -43,6 +43,24 @@ def pie_collisions(conn: sqlite3):
 
     """
 
+    df = pd.read_sql_query("SELECT age_name, collisions, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
+
+    df = df.sort_values(['age_order'])
+    df = df.set_index('age_name')
+
+    fig1, ax1 = plt.subplots()
+    ax1.pie(df['collisions'], labels=df.index.tolist(), autopct=absoulte_relative_autopct(df['collisions']), startangle=180)
+    ax1.axis('equal')
+
+    ax1.set_title('Liczba kolizji w zależności od grupy wiekowej - sprawcy')
+
+    plt.show()
+
+def pie_accidents(conn: sqlite3):
+    """
+
+    """
+
     df = pd.read_sql_query("SELECT age_name, accidents, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
 
     df = df.sort_values(['age_order'])

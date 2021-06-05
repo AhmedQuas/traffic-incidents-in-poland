@@ -3,6 +3,9 @@ import pandas as pd
 import sqlite3
 
 def covid_19_20(conn: sqlite3):
+    """
+
+    """
 
     df = pd.read_sql_query("SELECT year, week_day_name, accidents, week_day_order FROM week_day WHERE year IN('2020', '2019')", conn)
 
@@ -24,3 +27,71 @@ def covid_19_20(conn: sqlite3):
     plt.xticks(rotation=45)
 
     plt.show()
+
+def avg_week_day(conn: sqlite3):
+
+    df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, week_day_name, week_day_order FROM week_day GROUP BY week_day_name", conn)
+
+    fig, ax = plt.subplots()
+
+    df = df.set_index('week_day_name')
+    df = df.sort_values('week_day_order')
+    ax.set_title('Średnia liczba wypadków w zależności od dnia tygodnia w latach 2015 - 2020')
+    ax.set_xlabel('Dni tygodnia')
+    ax.set_ylabel('Liczba wypadków')
+
+    #print(df)
+
+    ax.bar(df.index, df['average'])
+    #plt.xticks(rotation=45)
+
+    plt.show()
+
+def accidents_weekend_week(conn: sqlite3):
+    """
+
+    """
+
+    df = pd.read_sql_query("SELECT week_day_name, accidents, week_day_order FROM week_day WHERE year=='2020'", conn)
+
+    weekend_list = df[df['week_day_name']=='Piątek'].accidents.tolist() + \
+              df[df['week_day_name']=='Sobota'].accidents.tolist() + \
+              df[df['week_day_name']=='Niedziela'].accidents.tolist()
+
+    weekend = sum(weekend_list)
+
+    week = df['accidents'].sum() - weekend
+
+    fig, ax = plt.subplots()
+    ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
+    ax.set_title('Porównanie liczby wypadków w weekendy i dni robocze')
+
+    plt.show()
+
+def killed_weekend_week(conn: sqlite3):
+    """
+
+    """
+
+    df = pd.read_sql_query("SELECT week_day_name, killed, week_day_order FROM week_day WHERE year=='2020'", conn)
+
+    weekend_list = df[df['week_day_name']=='Piątek'].killed.tolist() + \
+              df[df['week_day_name']=='Sobota'].killed.tolist() + \
+              df[df['week_day_name']=='Niedziela'].killed.tolist()
+
+    weekend = sum(weekend_list)
+
+    week = df['killed'].sum() - weekend
+
+    fig, ax = plt.subplots()
+    ax.pie([weekend, week], labels=['Weekend(Pt, Sb, Nd)','Dni tygodnia(Pn, Wt, Śr, Czw)'], autopct=absoulte_relative_autopct([weekend, week]), startangle=90)
+    ax.set_title('Porównanie liczby ofiar w weekendy i dni robocze')
+
+    plt.show()
+
+def absoulte_relative_autopct(values):
+    def calc(pct):
+        total = sum(values)
+        val = int(round(pct*total/100.0))
+        return '{p:.2f}% ({v:d})'.format(p=pct,v=val)
+    return calc
