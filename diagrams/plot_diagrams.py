@@ -11,7 +11,7 @@ from . import week_day
 
 def plot_diagrams(db_file: str):
     """
-    
+    It is responsible for plotting diagrams, all function that plot diagrams are registered below
     """
 
     conn = db.create_connection(db_file)

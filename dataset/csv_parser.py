@@ -3,7 +3,7 @@ import re
 
 def parse_csv_driver_age(path: str, line_offset: int, dataset_year: str):
     """
-
+    Function used to parse csv dataset about driver age
     """
 
     with open(path, encoding='cp1250') as file:
@@ -30,7 +30,7 @@ def parse_csv_driver_age(path: str, line_offset: int, dataset_year: str):
 
 def parse_csv_week_day(path: str, line_offset: int, dataset_year: int):
     """
-
+    Function used to parse csv dataset about week day stats
     """
 
     with open(path, encoding='cp1250') as file:
@@ -62,7 +62,7 @@ def parse_csv_week_day(path: str, line_offset: int, dataset_year: int):
 
 def parse_csv_month(path: str, line_offset: int, dataset_year: int):
     """
-
+    Function used to parse csv dataset about months
     """
 
     with open(path, encoding='cp1250') as file:
@@ -94,7 +94,7 @@ def parse_csv_month(path: str, line_offset: int, dataset_year: int):
 
 def parse_csv_hours(path: str, line_offset: int, dataset_year: int):
     """
-
+    Function used to parse csv dataset about hours
     """
 
     with open(path, encoding='cp1250') as file:
@@ -126,7 +126,7 @@ def parse_csv_hours(path: str, line_offset: int, dataset_year: int):
 
 def parse_csv_place_characteristics(path: str, line_offset: int, dataset_year: int):
     """
-
+    Function used to parse csv dataset about place characteristics(level crossing)
     """
 
     with open(path, encoding='cp1250') as file:
@@ -149,4 +149,3 @@ def parse_csv_place_characteristics(path: str, line_offset: int, dataset_year: i
         del parsed_data[-1]
 
     return parsed_data
-

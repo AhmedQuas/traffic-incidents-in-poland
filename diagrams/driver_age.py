@@ -4,9 +4,6 @@ import sqlite3
 from .plot_diagrams import *
 
 def accidents(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT year, age_name, accidents, age_order FROM driver_age", conn)
 
@@ -40,9 +37,6 @@ def accidents(conn: sqlite3):
     plt.show()
 
 def pie_collisions(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT age_name, collisions, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
 
@@ -59,9 +53,6 @@ def pie_collisions(conn: sqlite3):
     plt.show()
 
 def pie_accidents(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT age_name, accidents, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
 
@@ -78,9 +69,6 @@ def pie_accidents(conn: sqlite3):
     plt.show()
 
 def pie_killed(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT age_name, killed, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
 
@@ -97,9 +85,6 @@ def pie_killed(conn: sqlite3):
     plt.show()
 
 def pie_injured(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT age_name, injured, age_order FROM driver_age WHERE year=='2020' AND NOT age_order IN (1,2,3)", conn)
 

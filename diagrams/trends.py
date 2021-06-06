@@ -3,9 +3,6 @@ import pandas as pd
 import sqlite3
 
 def accidents_min_max_year(conn: sqlite3):
-    """
-
-    """
 
     df_min = pd.read_sql_query("SELECT MIN(accidents) AS min_accidents, month_name, month_order, year FROM months GROUP BY year", conn)
     df_max = pd.read_sql_query("SELECT MAX(accidents) AS max_accidents, month_name, month_order, year FROM months GROUP BY year", conn)

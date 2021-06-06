@@ -5,6 +5,9 @@ from . import db
 from helpers import db_helpers
 
 def save_dataset_in_db(downloaded_data:Dict, db_file: str):
+    """
+    Save downloaded datasets to database
+    """
 
     conn = db.create_connection(db_file)
 
@@ -21,6 +24,9 @@ def save_dataset_in_db(downloaded_data:Dict, db_file: str):
     print("Saving into SQLite stage complete.")
 
 def create_driver_age_table(conn:sqlite3, dataset:Dict):
+    """
+    Create & insert data into driver_age table
+    """
 
     sql_create_driver_age_table = """
 
@@ -75,6 +81,9 @@ def create_driver_age_table(conn:sqlite3, dataset:Dict):
     print(' - Driver age - OK!')
 
 def create_week_day_table(conn:sqlite3, dataset:Dict):
+    """
+    Create & insert data into week_day table
+    """
 
     sql_create_week_day_table = """
 
@@ -129,6 +138,9 @@ def create_week_day_table(conn:sqlite3, dataset:Dict):
     print(' - Days of weeek - OK!')
 
 def create_months_table(conn:sqlite3, dataset:Dict):
+    """
+    Create & insert data into months table
+    """
 
     sql_create_months_table = """
 
@@ -183,6 +195,9 @@ def create_months_table(conn:sqlite3, dataset:Dict):
     print(' - Months - OK!')
 
 def create_hours_table(conn:sqlite3, dataset:Dict):
+    """
+    Create & insert data into hours table
+    """
 
     sql_create_hours_table = """
 
@@ -237,6 +252,9 @@ def create_hours_table(conn:sqlite3, dataset:Dict):
     print(' - Hours - OK!')
 
 def create_place_characteristics_table(conn:sqlite3, dataset:Dict):
+    """
+    Create & insert data into place_characteristics table
+    """
 
     sql_create_hours_table = """
 

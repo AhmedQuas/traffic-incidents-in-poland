@@ -29,7 +29,6 @@ def covid_19_20(conn: sqlite3):
 
 def avg_month(conn: sqlite3):
 
-
     df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, month_name, month_order FROM months GROUP BY month_name", conn)
 
     fig, ax = plt.subplots(figsize=(10,10))

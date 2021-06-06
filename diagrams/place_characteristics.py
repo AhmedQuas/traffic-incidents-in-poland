@@ -3,9 +3,6 @@ import pandas as pd
 import sqlite3
 
 def active_unguarded_level_crossing_accidents(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT place_characteristic_name, accidents FROM place_characteristics WHERE year=='2020'", conn)
 
@@ -23,9 +20,6 @@ def active_unguarded_level_crossing_accidents(conn: sqlite3):
     plt.show()
 
 def active_crossing_level_year_accidents(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT place_characteristic_name, year, accidents FROM place_characteristics WHERE "\
         "place_characteristic_name=='Przejazd kolejowy strzeżony'", conn)

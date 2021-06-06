@@ -5,9 +5,6 @@ import sqlite3
 from helpers import db_helpers
 
 def avg_hour(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, hour_name, hour_order FROM hours GROUP BY hour_name", conn)
 
@@ -27,9 +24,6 @@ def avg_hour(conn: sqlite3):
     plt.show()
 
 def avg_hour_with_2020(conn: sqlite3):
-    """
-
-    """
 
     df_avg = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, hour_name, hour_order FROM hours GROUP BY hour_name", conn)
     df_2020 = pd.read_sql_query("SELECT accidents, hour_name, hour_order FROM hours WHERE year=='2020'", conn)
@@ -59,9 +53,6 @@ def avg_hour_with_2020(conn: sqlite3):
     plt.show()
 
 def rush_hours(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT hour_name, accidents, hour_order FROM hours WHERE year=='2020'", conn)
 
@@ -85,9 +76,6 @@ def rush_hours(conn: sqlite3):
     plt.show()
 
 def time_day(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT hour_name, accidents, hour_order FROM hours WHERE year=='2020'", conn)
 

@@ -3,9 +3,6 @@ import pandas as pd
 import sqlite3
 
 def covid_19_20(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT year, week_day_name, accidents, week_day_order FROM week_day WHERE year IN('2020', '2019')", conn)
 
@@ -48,9 +45,6 @@ def avg_week_day(conn: sqlite3):
     plt.show()
 
 def avg_week_day_with_2020(conn: sqlite3):
-    """
-
-    """
 
     df_avg = pd.read_sql_query("SELECT CAST(AVG(accidents) AS INTEGER) as average, week_day_name, week_day_order FROM week_day GROUP BY week_day_name", conn)
     df_2020 = pd.read_sql_query("SELECT accidents, week_day_name, week_day_order FROM week_day WHERE year=='2020'", conn)
@@ -80,9 +74,6 @@ def avg_week_day_with_2020(conn: sqlite3):
     plt.show()
 
 def accidents_weekend_week(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT week_day_name, accidents, week_day_order FROM week_day WHERE year=='2020'", conn)
 
@@ -102,9 +93,6 @@ def accidents_weekend_week(conn: sqlite3):
     plt.show()
 
 def killed_weekend_week(conn: sqlite3):
-    """
-
-    """
 
     df = pd.read_sql_query("SELECT week_day_name, killed, week_day_order FROM week_day WHERE year=='2020'", conn)
 

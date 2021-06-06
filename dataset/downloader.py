@@ -6,7 +6,7 @@ from .excel_parser import *
 
 def download_all():
     """
-
+    Loop throught all dataset data from dataset_ulrs to download & parse it
     """
 
     driver_age = []
@@ -74,7 +74,7 @@ def download_all():
 
 def download_dataset(dataset_url: str, offset: int, dataset_year: str):
     """
-
+    Gather information(title, format) about dataset and pass it to specified parser
     """
     driver_age_keywords = ['wiek kierującego', 'Wiek sprawcy kierującego', 'wiek sprawcy kierującego']
     week_day_keywords = ['podział na dni', 'dni tygodnia']
@@ -156,7 +156,7 @@ def download_dataset(dataset_url: str, offset: int, dataset_year: str):
 
 def download_2015_dataset(dataset_url: str):
     """
-
+    Download aggregated 2015 xls dataset
     """
     #dataset year 2015
 

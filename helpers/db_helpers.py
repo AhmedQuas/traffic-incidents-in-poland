@@ -1,5 +1,7 @@
 import pandas as pd
 
+# File contains function that map string to int value that is stored in db
+
 def get_driver_age_order(age):
 
     driver_age_mapper = {
