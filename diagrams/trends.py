@@ -19,7 +19,7 @@ def accidents_min_max_year(conn: sqlite3):
 
     groups.append(df_min['min_accidents'].values.tolist())
 
-    group_labels = ['Miesiąc z minimalną liczba wypadków w danym roku','Miesiąc z maksmalną liczbą wypadków w danym roku']
+    group_labels = ['Miesiąc z maksymalną liczbą wypadków w danym roku', 'Miesiąc z minimalną liczba wypadków w danym roku']
 
     df = pd.DataFrame(groups, index=group_labels).T
 
@@ -28,7 +28,6 @@ def accidents_min_max_year(conn: sqlite3):
     p1 = pd.concat([df], levels = ['stst','asd'],axis =1).plot.bar(grid=True, figsize=(10,10))
 
     p1.set_title('Powrównanie maksymalnej i minimalnej liczby wypadków w latach 2015 - 2020')
-    p1.set_xlabel('Miesiące')
     p1.set_ylabel('Liczba wypadków')
 
     plt.xticks(rotation=45)
